@@ -15,7 +15,7 @@ type AddrVerifyRequest struct {
 	Residential    string `json:"residential"`
 }
 
-func getAddrVerify(id, key string, addr AddrVerifyRequest) (rep interface{}, err error) {
+func DoAddrVerify(id, key string, addr AddrVerifyRequest) (rep interface{}, err error) {
 	client := goz.NewClient()
 	response, err := client.Post(getRequestUrl(addressVerify), goz.Options{
 		Timeout: 3000,

@@ -18,7 +18,7 @@ func TestAddrVerify(t *testing.T) {
 		Residential:    "true",
 	}
 
-	rep, err := getAddrVerify(apiId, apiKey, addr)
+	rep, err := DoAddrVerify(apiId, apiKey, addr)
 	if err != nil {
 		fmt.Println(err)
 		return
