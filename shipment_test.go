@@ -12,8 +12,8 @@ func TestShipment(t *testing.T) {
 	customerOrderNo := ""
 
 	shipTo := ShipTo{
-		ShipInfo{
-			Address: Address{
+		&ShipInfo{
+			Address: &Address{
 				StateCode:      "VA",
 				City:           "Nokesville",
 				DetailAddress:  "12180 Hazelwood Dr",
@@ -23,7 +23,7 @@ func TestShipment(t *testing.T) {
 				CountryCode:    "US",
 			},
 			Name: "Donovan.xu",
-			Phone: Phone{
+			Phone: &Phone{
 				Number:    "8000000000",
 				Extension: "",
 			},
