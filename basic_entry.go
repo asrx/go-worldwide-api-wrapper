@@ -5,14 +5,14 @@ type ShipFrom struct {
 }
 
 type ShipTo struct {
-	ShipInfo ShipInfo `json:"shipInfo"`
+	ShipInfo *ShipInfo `json:"shipInfo"`
 }
 
 type ShipInfo struct {
-	Address   Address `json:"address"`
-	Name      string  `json:"name"`
-	Attention string  `json:"attention"`
-	Phone     Phone   `json:"phone"`
+	Address   *Address `json:"address"`
+	Name      string   `json:"name"`
+	Attention string   `json:"attention"`
+	Phone     *Phone   `json:"phone"`
 }
 
 type Address struct {
@@ -32,13 +32,13 @@ type Phone struct {
 
 // -------------------
 type Package struct {
-	Length     string       `json:"length"`
-	Width      string       `json:"width"`
-	Height     string       `json:"height"`
-	Weight     string       `json:"weight"`
-	Insurance  string       `json:"insurance"`
-	Quantity   int          `json:"quantity"`
-	References []References `json:"references"`
+	Length     string        `json:"length"`
+	Width      string        `json:"width"`
+	Height     string        `json:"height"`
+	Weight     string        `json:"weight"`
+	Insurance  string        `json:"insurance"`
+	Quantity   int           `json:"quantity"`
+	References []*References `json:"references"`
 }
 
 /*
@@ -63,12 +63,12 @@ type Response struct {
 
 // ------- 估价结构体 ----------
 type ResponseRate struct {
-	Response
-	Data RateStruct `json:"data"`
+	*Response
+	Data *RateStruct `json:"data"`
 }
 
 type RateStruct struct {
-	Rates []RateInfo `json:"rates,omitempty"`
+	Rates []*RateInfo `json:"rates,omitempty"`
 }
 
 type RateInfo struct {
@@ -96,7 +96,7 @@ type RateInfo struct {
 
 // ---------- 估价下单结构体 -----------
 type ResponseShip struct {
-	Response
+	*Response
 	Data []*ShipStruct `json:"data"`
 }
 
