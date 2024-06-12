@@ -1,6 +1,8 @@
 package go_worldwide_api_wrapper
 
 import (
+	"encoding/json"
+
 	"github.com/idoubi/goz"
 )
 
@@ -32,7 +34,7 @@ func NewRateRequest(shipFromCode string, shipTo ShipTo, packages []Package, sign
 	}
 }
 
-func GetRate(id, key, shipFromCode string, shipTo ShipTo, packages []Package, signature bool) (rep interface{}, err error) {
+func GetRate(id, key, shipFromCode string, shipTo ShipTo, packages []Package, signature bool) (*ResponseRate, error) {
 	request := NewRateRequest(shipFromCode, shipTo, packages, signature)
 	client := goz.NewClient()
 	response, err := client.Post(getRequestUrl(rateUrl), goz.Options{
@@ -48,5 +50,11 @@ func GetRate(id, key, shipFromCode string, shipTo ShipTo, packages []Package, si
 		return nil, err
 	}
 
-	return body.String(), nil
+	rep := &ResponseRate{}
+	err = json.Unmarshal(body, rep)
+	if err != nil {
+		return nil, err
+	}
+
+	return rep, nil
 }

@@ -16,6 +16,7 @@ func Test_Cancel(t *testing.T) {
 	}
 
 	fmt.Println("----------------")
-	fmt.Println(rep)
+	fmt.Println(rep.Code)
+	fmt.Printf("%+v\n", rep)
 	fmt.Println("----------------")
 }

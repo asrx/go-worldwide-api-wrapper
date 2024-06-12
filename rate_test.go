@@ -10,7 +10,7 @@ func TestRate(t *testing.T) {
 	apiId := ""
 	apiKey := ""
 	shipFromCode := ""
-
+	
 	shipTo := ShipTo{
 		ShipInfo{
 			Address: Address{
@@ -44,6 +44,6 @@ func TestRate(t *testing.T) {
 		return
 	}
 	fmt.Println("----------------")
-	fmt.Println(rep)
+	fmt.Printf("%v\n", rep)
 	fmt.Println("----------------")
 }

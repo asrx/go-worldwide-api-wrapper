@@ -45,6 +45,6 @@ func TestShipment(t *testing.T) {
 		return
 	}
 	fmt.Println("----------------")
-	fmt.Println(rep)
+	fmt.Printf("%v\n", rep)
 	fmt.Println("----------------")
 }

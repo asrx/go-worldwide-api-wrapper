@@ -1,7 +1,7 @@
 package go_worldwide_api_wrapper
 
 import (
-	"fmt"
+	"encoding/json"
 
 	"github.com/idoubi/goz"
 )
@@ -12,7 +12,7 @@ type CancelRequest struct {
 	CustomOrderSn string `json:"customOrderSn"`
 }
 
-func DoCancel(id, key, orderSn string) (rep interface{}, err error) {
+func DoCancel(id, key, orderSn string) (*Response, error) {
 	// req
 	req := CancelRequest{CustomOrderSn: orderSn}
 
@@ -29,8 +29,11 @@ func DoCancel(id, key, orderSn string) (rep interface{}, err error) {
 	if err != nil {
 		return nil, err
 	}
+	rep := &Response{}
+	err = json.Unmarshal(body, rep)
+	if err != nil {
+		return nil, err
+	}
 
-	fmt.Println(body.String())
-
-	return nil, nil
+	return rep, nil
 }
