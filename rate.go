@@ -2,6 +2,7 @@ package go_worldwide_api_wrapper
 
 import (
 	"encoding/json"
+	"errors"
 
 	"github.com/idoubi/goz"
 )
@@ -50,11 +51,20 @@ func GetRate(id, key, shipFromCode string, shipTo ShipTo, packages []Package, si
 		return nil, err
 	}
 
-	rep := &ResponseRate{}
+	rep := &Response{}
 	err = json.Unmarshal(body, rep)
 	if err != nil {
 		return nil, err
 	}
+	if rep.Code != 200 {
+		return nil, errors.New(rep.Msg)
+	}
 
-	return rep, nil
+	rep2 := &ResponseRate{}
+	err = json.Unmarshal(body, rep2)
+	if err != nil {
+		return nil, err
+	}
+
+	return rep2, nil
 }

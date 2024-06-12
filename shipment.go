@@ -2,6 +2,7 @@ package go_worldwide_api_wrapper
 
 import (
 	"encoding/json"
+	"errors"
 
 	"github.com/idoubi/goz"
 )
@@ -68,11 +69,19 @@ func GetShipment(orderNo, id, key, shipFromCode string, shipTo ShipTo, packages 
 		return nil, err
 	}
 
-	rep := &ResponseShip{}
+	rep := &Response{}
 	err = json.Unmarshal(body, rep)
 	if err != nil {
 		return nil, err
 	}
+	if rep.Code != 200 {
+		return nil, errors.New(rep.Msg)
+	}
+	rep2 := &ResponseShip{}
+	err = json.Unmarshal(body, rep2)
+	if err != nil {
+		return nil, err
+	}
 
-	return rep, nil
+	return rep2, nil
 }
