@@ -10,7 +10,7 @@ func TestRate(t *testing.T) {
 	apiId := ""
 	apiKey := ""
 	shipFromCode := ""
-	
+
 	shipTo := ShipTo{
 		ShipInfo{
 			Address: Address{
